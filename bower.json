@@ -1,0 +1,26 @@
+{
+  "name": "angular-github-viewer",
+  "description": "Web client for GitHub's API. Gives you the ability to search for users by their username and see their account details and list of their repositories.",
+  "main": "./app/index.html",
+  "authors": [
+    "Berman Boris"
+  ],
+  "license": "GPL-3.0",
+  "keywords": [
+    "angularjs",
+    "github",
+    "api"
+  ],
+  "homepage": "https://github.com/bermanboris/angular-github-viewer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "bootstrap-css": "^3.3.6"
+  }
+}
