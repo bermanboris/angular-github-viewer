@@ -7,6 +7,15 @@
 
     app.factory("github", ['$http', function( $http ) {
 
+
+            // Search for user by name
+            var getUserByName = function( name ) {
+                return $http.get( "https://api.github.com/search/users?q=" + name )
+                    .then(function ( response ) {
+                        return getUser( response.data.items[0].login );
+                    });
+            };
+
             // Retrieve user details using passed username.
             // Returns promise with user data object.
 
@@ -28,6 +37,7 @@
             // Exposing service object with public methods
 
             return {
+                getUserByName: getUserByName,
                 getUser: getUser,
                 getUserRepos: getUserRepos
             };

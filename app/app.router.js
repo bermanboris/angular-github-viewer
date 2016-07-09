@@ -3,8 +3,18 @@
 
     app.config( function( $stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider ) {
 
-        $urlRouterProvider.otherwise( '/search' );
+        var prettyUrl = {
+            encode: function(str) { return str && str.replace(/ /g, "-"); },
+            decode: function(str) { return str && str.replace(/-/g, " "); },
+            is: angular.isString,
+            pattern: /[^/]+/
+        };
+
+        $urlRouterProvider.otherwise( '/search/angular' );
+        $urlMatcherFactoryProvider.type( 'name', prettyUrl );
         $urlMatcherFactoryProvider.strictMode(false);
+
+
 
         $stateProvider
             .state('main', {
@@ -22,12 +32,13 @@
                 }
             })
             .state('main.search', {
-                url: '/search/:username',
+                url: '/search/{username:name}',
                 resolve: {
                     user: ['github', '$stateParams', '$q', function( github, $stateParams, $q ){
                         if ( $stateParams.username ) {
                             var deferred = $q.defer();
-                            github.getUser( $stateParams.username ).then( function( user ) {
+                            
+                            github.getUserByName( $stateParams.username ).then( function( user ) {
                                 deferred.resolve( user );
                             });
 

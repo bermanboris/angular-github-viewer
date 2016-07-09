@@ -7,6 +7,8 @@
             $state.go( 'main.search', { username: username } );
         }
 
+
+
     }]);
 
 }());
