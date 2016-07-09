@@ -39,7 +39,9 @@
                             var deferred = $q.defer();
                             
                             github.getUserByName( $stateParams.username ).then( function( user ) {
-                                deferred.resolve( user );
+                                if ( user ) {
+                                    deferred.resolve( user );
+                                }
                             });
 
                             return deferred.promise;

@@ -12,7 +12,9 @@
             var getUserByName = function( name ) {
                 return $http.get( "https://api.github.com/search/users?q=" + name )
                     .then(function ( response ) {
-                        return getUser( response.data.items[0].login );
+                        if ( response.data.items[0] ) {
+                            return getUser( response.data.items[0].login );
+                        }
                     });
             };
 
