@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="main.search">GitHub User Viewer</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ng-hide="isAuthorized" ui-sref-active="active"><a ui-sref="app.login">Login</a></li>
+            <li ng-show="isAuthorized" ui-sref-active="active"><a ui-sref="app.tasks">Tasks</a></li>
+            <li ng-hide="isAuthorized" ui-sref-active="active"><a ui-sref="app.registration">Registration</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li ng-show="isAuthorized"><a>Logged in as <strong>{{firstName}}</strong></a></li>
+            <li ng-show="isAuthorized"><a ui-sref="app.logout">Log Out</a></li>
+        </ul>
+    </div>
+</nav>

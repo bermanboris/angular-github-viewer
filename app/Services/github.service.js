@@ -31,6 +31,7 @@
                 getUser: getUser,
                 getUserRepos: getUserRepos
             };
-        
+
         }]);
 }());
+

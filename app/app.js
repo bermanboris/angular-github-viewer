@@ -1,6 +1,1 @@
-(function() {
-    'use strict';
-
-    var app = angular.module("githubViewer", []);
-
-}());
+var app = angular.module("githubViewer", ['ui.router']);
