@@ -4,7 +4,10 @@
         <div class="clearfix">
 
             <img class="pull-left gap-right" ng-src=" {{ user.avatar_url }}" width="150" title="{{ user.name }}" />
-            <h2>{{ user.name || user.login }}</h2>
+            <h2>
+                <a ng-href="{{ user.html_url }}">{{ user.name || user.login }}</a>
+            </h2>
+
             <ul class="list-unstyled">
                 <li>Public Repositories: {{ user.public_repos }}</li>
                 <li ng-if="user.blog">
@@ -14,6 +17,7 @@
                 <li ng-if="user.location">
                     <a ng-href="http://maps.google.com/?q={{ user.location }}">{{ user.location }}</a>
                 </li>
+
 
             </ul>
         </div>
