@@ -1,7 +1,11 @@
 (function() {
     'use strict';
 
-    app.controller('MainController', ['$scope', 'github', function( $scope, github ) {
+    app.controller('SearchFormController', ['$scope', '$state', function( $scope, $state ) {
+
+        $scope.search = function( username ) {
+            $state.go( 'main.search', { username: username } );
+        }
 
     }]);
 

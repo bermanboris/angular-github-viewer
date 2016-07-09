@@ -1,25 +1,28 @@
 <div id="userDetails">
     <div>
-        <h2>{{ user.name }}</h2>
+        <h2>{{ user.name || user.login }}</h2>
         <img ng-src=" {{ user.avatar_url }}" width="150" title="{{ user.name }}" />
     </div>
 
-    <div>
+    <br/>
+        <div class="panel panel-default">
 
+            <div class="panel-heading">Repositories: <span class="badge">{{ user.public_repos }}</span></div>
 
-        Order:
-        <select ng-model="repoSortOrder">
-            <option value="+name">Name</option>
-            <option value="-stargazers_count">Stars</option>
-            <option value="+language">Language</option>
-        </select>
-
-        <table class="table">
+        <div class="table-responsive">
+        <table class="table table-striped table-condensed">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Stars</th>
-                <th>Language</th>
+                <th>
+                    <a ng-click="repoSortOrder = '+name'">Name</a>
+                </th>
+
+                <th>
+                    <a ng-click="repoSortOrder = '-stargazers_count'">Stars</a>
+                </th>
+                <th>
+                    <a ng-click="repoSortOrder = '+language'">Language</a>
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -30,6 +33,7 @@
             </tr>
             </tbody>
         </table>
-
+        </div>
+        </div>
     </div>
 </div>

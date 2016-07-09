@@ -24,31 +24,39 @@
             .state('main.search', {
                 url: '/search/:username',
                 resolve: {
-                  user: ['github', '$stateParams', '$q', function( github, $stateParams, $q ){
-                      if ( $stateParams.username ) {
-                          var deferred = $q.defer();
-                          github.getUser( $stateParams.username ).then( function( user ) {
-                              deferred.resolve( user );
-                          });
+                    user: ['github', '$stateParams', '$q', function( github, $stateParams, $q ){
+                        if ( $stateParams.username ) {
+                            var deferred = $q.defer();
+                            github.getUser( $stateParams.username ).then( function( user ) {
+                                deferred.resolve( user );
+                            });
 
-                          return deferred.promise;
+                            return deferred.promise;
 
-                      };
-                  }]
+                        };
+                    }],
+                    repos: ['github', '$q', 'user', function( github, $q, user ){
+                        if ( user ) {
+                            var deferred = $q.defer();
+                            github.getUserRepos( user ).then( function( repos ) {
+                                deferred.resolve( repos );
+                            });
+
+                            return deferred.promise;
+                        };
+                    }],
                 },
                 views: {
                     '': {
                         templateUrl: 'States/Search/SearchLayout.tpl.html'
                     },
                     'form@main.search': {
-                        templateUrl: 'States/Search/SearchForm/SearchForm.tpl.html'
+                        templateUrl: 'States/Search/SearchForm/SearchForm.tpl.html',
+                        controller: 'SearchFormController'
                     },
                     'results@main.search': {
                         templateUrl: 'States/Search/SearchResults/SearchResults.tpl.html',
-                        controller: function( $scope, user ) {
-                            console.log(user);
-                                $scope.user = user;
-                        }
+                        controller: 'SearchResultsController'
                     }
                 },
                 params: {
@@ -56,8 +64,17 @@
                         // Trailing slash fix
                         squash: true,
                         value: null
+                    },
+                    repos: {
+                        // Trailing slash fix
+                        squash: true,
+                        value: null
                     }
                 }
+            })
+            .state('main.about', {
+                url: '/about',
+                template: 'About'
             })
 
     });
